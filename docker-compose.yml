@@ -1,0 +1,53 @@
+version: '3.8'
+
+networks:
+  net:
+
+volumes:
+  pgdata:
+  assets:
+
+services:
+
+  db:
+    image: postgres
+    platform: linux/arm64
+    environment:
+       - POSTGRES_DB=vireo
+       - POSTGRES_USER=vireo
+       - POSTGRES_PASSWORD=vireo
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - net
+
+  adminer:
+    image: adminer
+    platform: linux/arm64/v8
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - net
+
+  vireo:
+    container_name: vireo
+    hostname: vireo
+    platform: linux/amd64
+    image: ${IMAGE_HOST}/${SERVICE_PROJECT}/${SERVICE_PATH}:${IMAGE_VERSION}
+    build:
+      dockerfile: Dockerfile
+      context: './'
+    env_file:
+       - .env
+    volumes:
+      - assets:${APP_PATH}
+    ports:
+      - 9000:9000
+    depends_on:
+      - db
+    networks:
+      - net

@@ -1,0 +1,217 @@
+.item-view .info-col {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.item-view ul.info-list {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+.item-view ul.info-list label {
+  font-weight: bolder;
+  font-size: 15px;
+  margin: 0px;
+}
+
+.item-view ul.info-list .info-data {
+  border: none;
+  margin: 0px 1px;
+  padding-top: 8px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  display: inline-block;
+}
+
+.item-view ul.info-list .info-data .span-block {
+  display: block;
+}
+
+.item-view ul.info-list .info-data .glyphicon {
+  margin-left: 5px;
+}
+
+.item-view ul.info-list .input-group .glyphicon {
+  top: 0;
+  border-left: 0px;
+}
+
+.item-view ul.info-list .form-control .glyphicon-minus {
+  margin-right: 10px;
+}
+
+.item-view ul.info-list .form-group {
+  margin: 0px 0px 0px 10px;
+}
+
+.item-view ul.info-list .form-group .glyphicon-plus {
+  margin-left: 10px;
+}
+
+.item-view ul.info-list .form-group .input-group .glyphicon-remove,
+.item-view ul.info-list .form-group .input-group .glyphicon-ok,
+.item-view ul.info-list .form-group .checkbox .glyphicon-remove,
+.item-view ul.info-list .form-group .checkbox .glyphicon-ok {
+  margin-top: 4px;
+  margin-right: 8px;
+}
+
+.item-view .info-empty {
+  color: #cccccc;
+}
+
+.item-view .reviewer-notes {
+  padding: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  max-height: 250px;
+  overflow-x: hidden;
+  border: 1px solid #ddd;
+}
+
+.item-view .advisor-review-url,
+.item-view .published-location-url {
+  margin-left: -12px;
+  line-height: 25px;
+}
+
+.item-view .advisor-review-url {
+  padding-top: 18px;
+}
+
+.item-view .published-location-url {
+  padding-top: 10px;
+}
+
+.item-view .reviewer-notes textarea {
+  width: 99%;
+  min-height: 180px;
+  max-height: 250px;
+}
+
+.active-documents .primary-file-title {
+  margin-top: 10px;
+}
+
+.all-files-action {
+  text-align: center;
+}
+
+.add-file-section {
+  -webkit-transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  -moz-transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  -o-transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  overflow: hidden;
+  margin: auto;
+  width: 80%;
+}
+
+.advanced-section,
+.email-section {
+  -webkit-transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  -moz-transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  -o-transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+}
+
+.section-closed {
+  opacity: 0;
+  max-height: 0;
+}
+
+.section-open {
+  opacity: 1;
+  max-height: 1000px;
+}
+
+.submission-status .sidebar-btn:hover {
+  cursor: pointer;
+}
+
+.action-log-table .private-flag {
+  font-weight: bold;
+}
+
+.action-log-table .message-cell {
+  max-width: 350px;
+}
+
+.action-log-more-less {
+  font-weight: bold;
+}
+
+.action-log-more-less:hover {
+  cursor: pointer;
+}
+
+.comment-body textarea {
+  height: 250px;
+}
+
+.email-element {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  transition: all 0.35s linear, margin 0.35s linear;
+ }
+
+.email-element .input-group-addon.glyphicon {
+  top: 0;
+}
+
+.email-element .input-group-addon.glyphicon.disabled {
+  color: #ababab;
+}
+
+.recipient-options .checkbox {
+  margin-left: 25px;
+}
+
+.email-cc.email-active,
+.email-element.email-active,
+.email-to.email-active {
+ opacity: 1;
+ max-height: 100px;
+ margin: 18px 0;
+ transition: all 0.35s linear, margin 0.35s linear;
+}
+
+.email-subject {
+  z-index: 1;
+  position: relative;
+}
+
+div .item-view div.row h1 span.spinning {
+  font-size: 32px;
+}
+
+.view-section-header {
+  position: relative;
+}
+
+.view-action-button {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.list-view-column-header {
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-right: 2px;
+}
+
+.list-view-column-header-icon {
+  display: block;
+  font-size: 10px;
+  color: #ccc;
+}
+
+.list-view-column-header-icon.selected {
+  color: #555;
+}
+
+.list-view-table-controls {
+  margin-bottom: 5px;
+}

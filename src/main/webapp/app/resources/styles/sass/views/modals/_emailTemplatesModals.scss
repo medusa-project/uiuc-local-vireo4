@@ -1,0 +1,21 @@
+#new-template-body {
+  resize: vertical;
+}
+#edit-template-body {
+  resize: vertical;
+}
+.email-template-label {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.email-template-properties-list {
+  max-height:  200px;
+  width: 100%;
+  overflow: scroll;
+}
+.email-template-fields-list {
+  max-height:  200px;
+  width: 100%;
+  overflow: scroll;
+}

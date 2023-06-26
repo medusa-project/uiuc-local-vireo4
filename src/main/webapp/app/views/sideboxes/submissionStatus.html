@@ -1,0 +1,50 @@
+<div class="submission-status">
+	<ul class="sidebox-list">
+		<li><button class="btn btn-info" ng-click="openModal('#submissionStatus')">{{box.submission.submissionStatus.name}}</button></li>
+
+		<li>Assignee:</li>
+		<li ng-click="openModal('#submissionAssign')" class="sidebar-btn font-weight-bold"> <span class="glyphicon glyphicon-pencil"></span> {{box.submission.assignee.settings.displayName || "none"}}</li>
+
+		<li>Last Action:</li>
+		<li class="font-weight-bold">{{box.getLastActionDate() | date : 'short'}}</li>
+		<li>What:</li>
+		<li class="font-weight-bold">{{(box.getLastActionEntry() | limitTo : 100) + (box.getLastActionEntry().length > 100 ? ' . . .' : '')}}</li>
+
+		<li>Submission Date:</li>
+		<li class="sidebar-btn font-weight-bold"
+			ng-click="date=true"
+			ng-change="box.setSubmitDate(newSubmitDate)"
+			uib-datepicker-popup="MM/dd/yyyy"
+			datepicker-popup-template-url="views/sideboxes/datepicker.html"
+			ng-model="newSubmitDate"
+			is-open="date"
+			close-text="Close"
+			stringtodate>
+			<span ng-if="!box.savingDate" class="glyphicon glyphicon-pencil"></span> <span ng-if="box.savingDate" class="glyphicon glyphicon-refresh spinning"></span> {{box.submission.submissionDate || "not submitted" | date: 'M/d/yyyy'}}
+		</li>
+
+		<li><button ng-click="openModal('#advisorEmail')" class="btn btn-default">Generate Advisor Email</button></li>
+
+	</ul>
+</div>
+
+<modal
+	modal-id="advisorEmail"
+	modal-view="views/modals/view/advisorEmail.html"
+	modal-header-class="modal-header-primary"
+	wvr-modal-backdrop="static">
+</modal>
+
+<modal
+	modal-id="submissionStatus"
+	modal-view="views/modals/view/status.html"
+	modal-header-class="modal-header-primary"
+	wvr-modal-backdrop="static">
+</modal>
+
+<modal
+	modal-id="submissionAssign"
+	modal-view="views/modals/view/assign.html"
+	modal-header-class="modal-header-primary"
+	wvr-modal-backdrop="static">
+</modal>

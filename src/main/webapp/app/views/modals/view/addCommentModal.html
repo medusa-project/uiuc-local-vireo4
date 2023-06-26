@@ -1,0 +1,95 @@
+<form name="addCommentModalForm">
+    <div class="modal-header {{attr.modalHeaderClass}}">
+        <button type="button" class="close" ng-click="resetCommentModal(addCommentModal)" aria-title="Close">
+            <span class="modal-close" aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title">Add Comment</h3>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+            <div class="col-xs-12">
+
+                <div class="form-group email-element email-to" ng-class="{'email-active':addCommentModal.sendEmailToRecipient&&addCommentModal.commentVisibility==='public', 'has-error': isEmailAddresseeInvalid(addCommentModalForm.recipientEmail)}">
+                    <label>To:</label>
+                    <span ng-if="!addCommentModal.recipientEmails || addCommentModal.recipientEmails.length == 0" class="text-danger">No Emails added. Click the Add Email button to add an email recipient.</span>
+                    <span class="label-remove-hover" ng-click="removeEmailAddressee(email,addCommentModal.recipientEmails)" ng-repeat="email in addCommentModal.recipientEmails"><span class="glyphicon glyphicon-remove"></span>{{email.name}} </span>
+                    <div class="input-group">
+                        <input type="email" class="form-control" ng-model="addCommentModal.recipientEmail" ng-pattern="emailValidationPattern" name="recipientEmail" uib-typeahead="entry as entry.name for entry in submission.getContactEmails() | filter:$viewValue" ng-blur="validateEmailAddressee(addCommentModalForm.recipientEmail)" typeahead-select-on-blur="true" autocomplete="true" />
+                        <span title="Add Email" ng-class="{disabled: !addCommentModal.recipientEmail}" class="input-group-addon glyphicon glyphicon-plus clickable" ng-click="addEmailAddressee(addCommentModal.recipientEmails, addCommentModalForm.recipientEmail)"></span>
+                    </div>
+                    <span ng-if="!addFileData.recipientEmails || addFileData.recipientEmails.length == 0">Enter a valid email address or an email recipient type (e.g. Submitter).</span>
+                    <div ng-if="isEmailAddresseeInvalid(addCommentModalForm.recipientEmail)" class="alert alert-danger">
+                      <small>Value must either be a valid email address or a contact name (e.g. {{submission.getContactEmails()[0].name}}).</small>
+                    </div>
+                </div>
+
+                <div class="form-group email-element email-cc" ng-class="{'email-active': addCommentModal.sendEmailToCCRecipient&&addCommentModal.commentVisibility==='public', 'has-error': isEmailAddresseeInvalid(addCommentModalForm.ccRecipientEmail)}">
+                    <label>CC:</label>
+                    <span ng-if="!addCommentModal.ccRecipientEmails || addCommentModal.ccRecipientEmails.length == 0" class="text-danger">No Emails added. Click the Add Email button to add an email recipient.</span>
+                    <span class="label-remove-hover" ng-click="removeEmailAddressee(email,addCommentModal.ccRecipientEmails)" ng-repeat="email in addCommentModal.ccRecipientEmails"><span class="glyphicon glyphicon-remove"></span>{{email.name}} </span>
+                    <div class="input-group">
+                        <input type="email" class="form-control" ng-model="addCommentModal.ccRecipientEmail" ng-pattern="emailValidationPattern" name="ccRecipientEmail" uib-typeahead="entry as entry.name for entry in submission.getContactEmails() | filter:$viewValue" ng-blur="validateEmailAddressee(addCommentModalForm.ccRecipientEmail)" typeahead-select-on-blur="true" autocomplete="true" />
+                        <span title="Add Email" ng-class="{disabled: !addCommentModal.ccRecipientEmail}" class="input-group-addon glyphicon glyphicon-plus clickable" ng-click="addEmailAddressee(addCommentModal.ccRecipientEmails, addCommentModalForm.ccRecipientEmail)"></span>
+                    </div>
+                    <span ng-if="!addFileData.ccRecipientEmails || addFileData.ccRecipientEmails.length == 0">Enter a valid email address or an email recipient type (e.g. Submitter).</span>
+                    <div ng-if="isEmailAddresseeInvalid(addCommentModalForm.ccRecipientEmail)" class="alert alert-danger">
+                      <small>Value must either be a valid email address or a contact name (e.g. {{submission.getContactEmails()[0].name}}).</small>
+                    </div>
+                </div>
+
+                <div class="form-group email-subject">
+                    <label>Subject:</label>
+                    <input type="text" class="form-control" ng-model="addCommentModal.subject" />
+                </div>
+
+                <div class="form-group comment-body">
+                    <textarea class="form-control" ng-model="addCommentModal.message"></textarea>
+                </div>
+
+                <div class="form-group email-template">
+                    <select class="form-control" ng-model="addCommentModal.selectedTemplate" ng-options="template as template.name for template in emailTemplates track by template.id" ng-change="addCommentModal.message=addCommentModal.selectedTemplate.message;addCommentModal.subject=addCommentModal.selectedTemplate.subject">
+                    </select>
+                </div>
+
+                <div class="form-group public-private">
+
+                    <div class="radio">
+                      <label><input type="radio" name="optradio" value="public" ng-model="addCommentModal.commentVisibility" ng-click="addCommentModal.sendEmailToRecipient=true">Comment is public</label>
+                    </div>
+
+                    <div class="recipient-options email-element" ng-class="{'email-active': addCommentModal.commentVisibility==='public'}">
+                        <div class="checkbox">
+                          <label><input type="checkbox" ng-model="addCommentModal.sendEmailToRecipient" ng-change="!addCommentModal.sendEmailToRecipient?addCommentModal.sendEmailToCCRecipient=sendEmailToRecipient:addCommentModal.sendEmailToCCRecipient=addCommentModal.sendEmailToCCRecipient">Add Email Recipients</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" ng-model="addCommentModal.sendEmailToCCRecipient" ng-disabled="!addCommentModal.sendEmailToRecipient">Add CC Recipients</label>
+                        </div>
+                    </div>
+
+                    <div class="radio">
+                      <label><input type="radio" name="optradio" value="private" ng-model="addCommentModal.commentVisibility" ng-click="addCommentModal.sendEmailToRecipient=false;addCommentModal.sendEmailToCCRecipient=false">Comment is private</label>
+                    </div>
+                </div>
+
+                <div class="form-group public-private">
+                  <div class="checkbox">
+                    <label><input type="checkbox" ng-model="addCommentModal.needsCorrection">Flag submission as Needs Corrections</label>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="resetCommentModal(addCommentModal)" ng-disabled="addCommentModal.adding">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="addComment(addCommentModal)" ng-disabled="disableAddComment()">
+            <span ng-if="!addCommentModal.adding">Comment</span>
+            <span ng-if="addCommentModal.adding">
+                Adding Comment
+                <span class="glyphicon glyphicon-refresh spinning"></span>
+            </span>
+        </button>
+    </div>
+</form>

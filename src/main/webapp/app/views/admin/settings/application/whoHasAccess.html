@@ -1,0 +1,35 @@
+<div ng-controller="WhoHasAccessController">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-default modal-add-btn" ng-click="openAddMemberModal()">
+                Add Member
+            </button>
+
+            <div class="glyphicon glyphicon-info-sign opaque glyiphicon-span-adjust" tooltip="Select to elevate user permissions to admin, manager, or reviewer roles."></div>
+
+            <table ng-table="assignableUsersTable" class="table table-hover table-striped">
+                <tbody>
+                    <tr ng-repeat="u in $data" ng-init="setRole(u)">
+                        <td data-title="'Name'">{{u.name}}</td>
+                        <td data-title="'E-mail'">{{u.email}}</td>
+                        <td data-title="'Role'">
+                            <select class="form-control" ng-model="u.role" ng-change="updateRole(u)" ng-disabled="disableUpdateRole(u)">
+                                <option ng-repeat="role in roles[u.email]" ng-selected="role === u.role">{{role}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <modal
+        modal-id="addMemberModal"
+        modal-view="views/modals/addMemberModal.html"
+        modal-header-class="modal-header-primary"
+        modal-keyboard="false"
+        wvr-modal-backdrop="static">
+    </modal>
+
+</div>

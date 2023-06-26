@@ -1,0 +1,38 @@
+<div class="modal-header {{attr.modalHeaderClass}}">
+    <button type="button" class="close" ng-click="box.resetStatus(); box.resetAssigneeWorking()" aria-title="Close">
+        <span class="modal-close" aria-hidden="true">&times;</span>
+    </button>
+    <h3 class="modal-title">Assign Submission</h3>
+</div>
+
+<div class="modal-body">
+	<div class="row">
+		<div class="col-xs-12">
+
+            <div class="form-group">
+                <button class="btn btn-default" ng-click="box.changeAssignee(box.user);box.assignWorking=true;">Assign to me <span ng-if="box.assignWorking" class="glyphicon glyphicon-refresh spinning"></span></button>
+            </div>
+
+            <form class="form-inline" name="">
+                <label class="control-title" for="newStatus"><strong>Assign To</strong>:</label>
+                <select
+                    class="form-control"
+                    name="assign"
+                    ng-init="box.assignee = box.assignableUsers[0]"
+                    ng-model="box.assignee"
+                    ng-options="au as au.settings.displayName for au in box.assignableUsers">
+                </select>
+                <button type="button" class="btn btn-primary" ng-click="box.changeAssignee(box.assignee);box.assignSaveWorking=true;">Save <span ng-if="box.assignSaveWorking" class="glyphicon glyphicon-refresh spinning"></span></button>
+            </form>
+
+            <div class="form-group">
+                <button class="btn btn-default" ng-click="box.changeAssignee(null);box.unassignWorking=true;">Unassign <span ng-if="box.unassignWorking" class="glyphicon glyphicon-refresh spinning"></span></button>
+            </div>
+
+		</div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="box.resetStatus(); box.resetAssigneeWorking()">Cancel</button>
+</div>

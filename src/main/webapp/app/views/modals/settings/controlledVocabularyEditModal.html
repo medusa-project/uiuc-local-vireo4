@@ -1,0 +1,20 @@
+<div class="modal-header {{attr.modalHeaderClass}}">
+	<button type="button" class="close" ng-click="resetControlledVocabulary(true)" aria-label="Close">
+		<span class="modal-close" aria-hidden="true">&times;</span>
+	</button>
+	<h3 class="modal-title">Edit Controlled Vocabulary</h3>
+</div>
+
+<form ng-submit="updateControlledVocabulary()" name="forms.update" novalidate>
+
+	<validationmessage results="controlledVocabularyRepo.getValidationResults()"></validationmessage>
+
+	<div class="modal-body">
+		<validatedinput id="edit-cv-name" model="modalData" property="name" label="Controlled Vocabulary Name" form="forms.update" validations="controlledVocabularyRepo.getValidations()" results="modalData.ValidationResults"></validatedinput>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" ng-click="resetControlledVocabulary(true)">Cancel</button>
+		<button id="edit-controlledVocabulary-save" type="submit" class="btn btn-primary" ng-disabled="forms.update.$invalid">Update</button>
+	</div>
+</form>

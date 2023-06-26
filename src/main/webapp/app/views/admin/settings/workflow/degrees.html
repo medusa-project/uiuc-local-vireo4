@@ -1,0 +1,73 @@
+<div id="degrees-container" class="row" ng-controller="DegreeRepoController">
+
+	<validationmessage results="degreeRepo.getValidationResults()"></validationmessage>
+
+	<div class="col-md-6">
+		<div class="col-md-10 col-md-offset-1">
+			<button class="btn btn-default modal-add-btn" ng-click="openModal('#degreeNewModal')">
+				Add Degree
+			</button>
+
+			<div class="glyphicon glyphicon-info-sign opaque glyiphicon-span-adjust" tooltip="Select to add a new degree."></div>
+
+			<p ng-if="degrees.length == 0">Add new Degree</p>
+
+			<div class="remove" ng-if="degrees.length !== 0">
+				<a href="" ng-click="confirmRemoveAllDegrees()">
+					<span class="glyphicon glyphicon-trash text-danger"></span>
+					<span class="text-danger"> Remove all Degrees</span>
+				</a>
+			</div>
+			
+			<draganddroplist dragging="dragging"
+							 scope-value="degrees"
+							 properties='["name", "level"]'
+							 item-view='views/directives/dragAndDropDegree.html'
+							 listeners='dragControlListeners'
+							 edit='editDegree(index)'
+							 sort-label='Degrees'
+							 sort-column='name'
+							 sort-action='sortAction'
+							 sort-method='sortDegrees(column)'>
+			</draganddroplist>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="col-md-10 col-md-offset-1">
+			<trashcan id="{{trashCanId}}"
+					  dragging="dragging"
+					  listeners='dragControlListeners'>
+			</trashcan>
+		</div>
+	</div>
+
+	<modal modal-id="degreeNewModal"
+		   modal-view="views/modals/settings/degreeNewModal.html"
+		   modal-header-class="modal-header-primary"
+		   modal-keyboard="false"
+		   wvr-modal-backdrop="static">
+	</modal>
+
+	<modal modal-id="degreeEditModal"
+		   modal-view="views/modals/settings/degreeEditModal.html"
+		   modal-header-class="modal-header-primary"
+		   modal-keyboard="false"
+		   wvr-modal-backdrop="static">
+	</modal>
+
+	<modal modal-id="degreeConfirmRemoveModal"
+		   modal-view="views/modals/settings/degreeConfirmRemoveModal.html"
+		   modal-header-class="modal-header-primary"
+		   modal-keyboard="false"
+		   wvr-modal-backdrop="static">
+	</modal>
+
+	<modal modal-id="degreeConfirmRemoveAllModal"
+		   modal-view="views/modals/settings/degreeConfirmRemoveAllModal.html"
+		   modal-header-class="modal-header-primary"
+		   modal-keyboard="false"
+		   wvr-modal-backdrop="static">
+	</modal>
+
+</div>

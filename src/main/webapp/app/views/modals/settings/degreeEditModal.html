@@ -1,0 +1,50 @@
+<div class="modal-header {{attr.modalHeaderClass}}">
+	<button type="button" class="close" ng-click="resetDegree()" aria-label="Close">
+		<span class="modal-close" aria-hidden="true">&times;</span>
+	</button>
+	<h3 class="modal-title">Edit Degree</h3>
+</div>
+
+<form ng-submit="updateDegree()" name="forms.update" novalidate>
+
+  <validationmessage results="degreeRepo.getValidationResults()"></validationmessage>
+
+	<div class="modal-body">
+
+		<validatedinput
+			id="edit-degree-name"
+			type="text"
+			model="modalData"
+			property="name"
+			label="Name"
+			form="forms.update"
+			validations="degreeRepo.getValidations()"
+			results="modalData.ValidationResults">
+		</validatedinput>
+
+		<validatedselect
+			id="edit-degree-level"
+      options="degreeLevels"
+      optionproperty="name"
+      model="modalData"
+      property="level"
+      label="Level"
+      form="forms.update"
+      validations="degreeRepo.getValidations()"
+      results="modalData.ValidationResults">
+		</validatedselect>
+
+	</div>
+
+	<div class="modal-footer">
+		<button
+			type="button"
+			class="btn btn-default"
+			ng-click="resetDegree()">Cancel</button>
+		<button
+			id="edit-degree-save"
+			type="submit"
+			class="btn btn-primary"
+			ng-disabled="forms.update.$invalid">Update</button>
+	</div>
+</form>

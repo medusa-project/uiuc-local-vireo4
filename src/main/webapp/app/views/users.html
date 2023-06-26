@@ -1,0 +1,26 @@
+<div class="management-table" ng-controller="UserRepoController">
+  <div ng-if="isManager() || isAdmin()" class="col-12">
+      <weaver-table weaver-table="weaverTable" ng-if="weaverTable">
+        <weaver-table-controls></weaver-table-controls>
+
+        <weaver-table-element>
+          <table ng-table="weaverTable.tableParams" template-header="customTableHeader" template-pagination="views/customPaginationControls.html" show-filter="false" class="table table-bordered table-striped user-table">
+            <tbody>
+              <tr ng-repeat="user in $data">
+                <td title="'Email'">{{user.email}}</td>
+                <td title="'First Name'">{{user.firstName}}</td>
+                <td title="'Last Name'">{{user.lastName}}</td>
+                <td title="'Role'">
+                  <select ng-if="(isAdmin() || isManager())" ng-model="user.role" ng-change="updateRole(user, role)" class="form-control">
+                    <option ng-repeat="role in allowableRoles(user.role)">{{role}}</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </weaver-table-element>
+
+        <weaver-table-modals></weaver-table-modals>
+      </weaver-table>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+[{
+    "title": "ID",
+    "sort": "ASC",
+    "valuePath": ["id"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Status",
+    "sort": "NONE",
+    "valuePath": ["submissionStatus", "name"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Organization",
+    "sort": "NONE",
+    "valuePath": ["organization", "name"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Organization Category",
+    "sort": "NONE",
+    "valuePath": ["organization", "category", "name"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Assigned To",
+    "sort": "NONE",
+    "valuePath": ["assignee", "email"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Submission Date",
+    "sort": "NONE",
+    "valuePath": ["submissionDate"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_DATE"
+    }
+  },
+  {
+    "title": "Approval Date",
+    "sort": "NONE",
+    "valuePath": ["approveApplicationDate"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_DATE"
+    }
+  },
+  {
+    "title": "License Agreement Date",
+    "sort": "NONE",
+    "valuePath": ["submissionDate"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_DATE"
+    }
+  },
+  {
+    "title": "Committee Approval Date",
+    "sort": "NONE",
+    "valuePath": ["approveAdvisorDate"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_DATE"
+    }
+  },
+  {
+    "title": "Committee Embargo Approval Date",
+    "sort": "NONE",
+    "valuePath": ["approveEmbargoDate"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_DATE"
+    }
+  },
+  {
+    "title": "Committee Contact Email",
+    "sort": "NONE",
+    "valuePath": ["committeeContactEmail"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_CONTACT"
+    }
+  },
+  {
+    "title": "Custom Actions",
+    "sort": "NONE",
+    "valuePath": ["customActionValues"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Deposit ID",
+    "sort": "NONE",
+    "valuePath": [],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Notes",
+    "sort": "NONE",
+    "valuePath": ["reviewerNotes"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Last Event",
+    "sort": "NONE",
+    "valuePath": ["lastEvent"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Event Time",
+    "sort": "NONE",
+    "valuePath": [],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Search Box",
+    "sort": "NONE",
+    "valuePath": [],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  },
+  {
+    "title": "Exclude",
+    "sort": "NONE",
+    "valuePath": ["exclude"],
+    "status": null,
+    "inputType": {
+      "name": "INPUT_TEXT"
+    }
+  }
+]

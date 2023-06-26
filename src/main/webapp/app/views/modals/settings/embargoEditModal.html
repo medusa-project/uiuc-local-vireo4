@@ -1,0 +1,95 @@
+<div class="modal-header {{attr.modalHeaderClass}}">
+	<button type="button" class="close" ng-click="resetEmbargo()" aria-label="Close">
+		<span class="modal-close" aria-hidden="true">&times;</span>
+	</button>
+	<h3 class="modal-title">Edit {{modalData.guarantor}} Embargo</h3>
+</div>
+
+<form ng-submit="updateEmbargo()" name="forms.update" novalidate>
+
+    <validationmessage results="embargoRepo.getValidationResults()"></validationmessage>
+
+    <div class="modal-body">
+
+        <validatedinput
+            id="edit-embargo-name"
+            model="modalData"
+            property="name"
+            label="Embargo Name"
+            form="forms.update"
+            validations="embargoRepo.getValidations()"
+            disabled="isSystemRequired"
+            results="modalData.ValidationResults">
+        </validatedinput>
+
+        <validatedinput
+            id="editembargo-description"
+            model="modalData"
+            property="description"
+            label="Embargo Description"
+            form="forms.update"
+            validations="embargoRepo.getValidations()"
+            disabled="isSystemRequired"
+            results="modalData.ValidationResults">
+        </validatedinput>
+
+        <validatedinput
+            id="edit-embargo-duration;"
+            model="modalData"
+            property="duration"
+            label="Embargo Duration"
+            form="forms.update"
+            validations="embargoRepo.getValidations()"
+            disabled="isSystemRequired"
+            results="modalData.ValidationResults">
+        </validatedinput>
+
+        <validatedinput
+            id="edit-embargo-duration-checkbox"
+            type="checkbox"
+            model="modalData"
+            property="duration"
+            label="Indefinite"
+            placeholder="This embargo duration will be indefinite."
+            truevalue="null"
+            falsevalue="12"
+            form="forms.update"
+            validations="embargoRepo.getValidations()"
+            disabled="isSystemRequired"
+            results="modalData.ValidationResults">
+        </validatedinput>
+
+        <validatedinput
+            id="edit-embargo-is-active"
+            type="checkbox"
+            model="modalData"
+            property="isActive"
+            label="Display:"
+            truevalue="true"
+            falsevalue="false"
+            placeholder="This embargo option will be available for new submissions."
+            form="forms.update"
+            validations="embargoRepo.getValidations()"
+            results="modalData.ValidationResults">
+        </validatedinput>
+
+    </div>
+
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-default"
+            ng-click="resetEmbargo()">Cancel</button>
+        <button
+            id="edit-embargo-delete"
+            type="button"
+            class="btn btn-danger"
+            ng-disabled="isSystemRequired(modalData)"
+            ng-click="removeEmbargo()">Delete</button>
+        <button
+            id="edit-embargo-save"
+            type="submit"
+            class="btn btn-primary"
+            ng-disabled="forms.update.$invalid">Update</button>
+    </div>
+</form>

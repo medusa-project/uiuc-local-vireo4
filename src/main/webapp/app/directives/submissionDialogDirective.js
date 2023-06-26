@@ -1,0 +1,37 @@
+vireo.directive("submissiondialog", function($anchorScroll, $location) {
+    return {
+        templateUrl: function(element, attr) {
+            return "views/directives/submissionDialog-" + attr.type + ".html";
+        },
+        scope: {
+            submission: '=',
+            messages: '='
+        },
+        link: function($scope, element, attr, parent) {
+            $scope.show = ['-', '+'];
+        },
+        controller: function($scope) {
+            $scope.submitGloss = ["Corrections Completed", "Are you sure?"];
+
+            $scope.submittingCorrections = false;
+
+            $scope.submitCorrections = function() {
+                if ($scope.submitGloss[0] === "Are you sure?") {
+                    $scope.submittingCorrections = true;
+                    $scope.submission.submitCorrections().then(function(response) {
+                        angular.extend($scope.submission, angular.fromJson(response.body).payload.Submission);
+                        $location.path("/submission/corrected");
+                        $scope.submittingCorrections = false;
+                        $scope.submitGloss.reverse();
+                    });
+                } else {
+                    $scope.submitGloss.reverse();
+                }
+            };
+
+            $scope.jumpToUploadFiles = function() {
+                $anchorScroll('upload-files');
+            };
+        }
+    };
+});

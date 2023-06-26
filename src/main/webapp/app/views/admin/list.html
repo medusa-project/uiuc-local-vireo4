@@ -1,0 +1,56 @@
+<div ng-controller="SubmissionListController">
+
+  <modal modal-id="customizeSubmissionList" modal-view="views/modals/submissions/customizeSubmissionList.html" modal-header-class="modal-header-primary" wvr-modal-backdrop="static"></modal>
+
+  <alerts seconds="90" channels="submission/select" types="WARNING" view="views/alerts/submissionItemViewAlert.html" exclusive></alerts>
+
+  <h1>List ETDs</h1>
+  <hr/>
+
+  <div class="list-view-table-controls">
+    <button class="btn btn-default" ng-click="openModal('#customizeSubmissionList')">
+      Customize columns
+    </button>
+    <button class="btn btn-default" ng-click="resetColumnsToDefault()">
+      Default columns
+    </button>
+  </div>
+
+  <table ng-table-dynamic="tableParams with userColumns" show-filter="false" class="table table-bordered table-striped table-hover" id="etd-table">
+    <thead class="header">
+      <tr>
+        <th ng-repeat="column in userColumns">
+          <div class="btn" style="white-space: nowrap;" ng-click="sortBy(column)">
+            <span class="select-toggle list-view-column-header">
+              <i class="glyphicon glyphicon-triangle-top list-view-column-header-icon" ng-class="{'selected' : column.sort === 'ASC'}"></i>
+              <i class="glyphicon glyphicon-triangle-bottom list-view-column-header-icon" ng-class="{'selected' : column.sort === 'DESC'}"></i>
+            </span>
+            <span>{{column.title}}</span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in $data" ng-init="$last && finished()" ng-click="viewSubmission(row)" class="select-toggle submission-list-row">
+        <td ng-repeat="col in $columns">
+          <span ng-class="{'glyphicon glyphicon-remove-circle' : $first}" ng-click="addRowFilter($parent.$index, row)"></span>
+          <span ng-if="col.title() !== 'Custom Actions'">{{displaySubmissionProperty(row, col)}}</span>
+          <span ng-if="col.title() === 'Custom Actions'">
+            <span ng-repeat="ca in row.customActionValues">
+              <input ng-checked="{{ca.value}}" type="checkbox" disabled> {{getCustomActionLabelById(ca.definition.id)}}</input>
+              <br/>
+            </span>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot class="header">
+      <tr>
+        <th colspan="{{userColumns.length}}">
+          {{page.totalElements || 0}} matching records displayed on {{page.totalPages || 0}} pages ({{page.count || 0}} per page).
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+
+</div>

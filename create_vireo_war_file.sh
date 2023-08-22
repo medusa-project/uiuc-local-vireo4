@@ -5,7 +5,7 @@
 echo "From create_vireo_war_file.sh, the current folder is" `pwd`
 
 # now run maven
-mvn clean package -Dproduction -Dassets.uri=file:/home/vireo/vireo4_data/assets
+JAVA_HOME='/home/vireo/java/jdk-11.0.1' mvn clean package -Dproduction -Dassets.uri=file:/home/vireo/vireo4_data/assets
 
 
 
